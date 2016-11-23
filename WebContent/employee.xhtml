@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<h:dataTable value="#{employeeBean.list}" var="item" id="mydata">
+
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:inputText value="#{employeeBean.updateDetails.ename}"
+					rendered="#{item.upd}" />
+				<h:outputText value="#{item.ename}" rendered="#{not item.upd}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Number</f:facet>
+				<h:inputText value="#{employeeBean.updateDetails.enumber}"
+					rendered="#{item.upd}" />
+				<h:outputText value="#{item.enumber}" rendered="#{not item.upd}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandLink value="Delete  "
+					action="#{employeeBean.delete(item)}" />
+				<h:commandLink value="Update"
+					action="#{employeeBean.updatability(item)}"
+					rendered="#{not item.upd}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="Update"
+					action="#{employeeBean.update(item.id)}" />
+			</h:column>
+			
+		</h:dataTable>
+		<br />
+		<a href="employee_add.xhtml">add</a>
+	</h:form>
+</h:body>
+</html>
